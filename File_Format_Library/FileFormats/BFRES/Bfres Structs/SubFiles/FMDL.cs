@@ -864,6 +864,7 @@ namespace Bfres.Structs
                     }
 
                     BfresModelImportSettings settings = new BfresModelImportSettings();
+                    settings.DisableMaterialEdits();
                     settings.LoadOriginalMeshData(shapes);
                     settings.LoadNewMeshData(ImportedObjects);
 
@@ -891,6 +892,16 @@ namespace Bfres.Structs
                             List<FSHP> Matches = shapes.Where(p => String.Equals(p.Text,
                             ImportedObjects[i].ObjectName, StringComparison.CurrentCulture)).ToList();
                             ImportedObjects[i].BoneIndex = 0;
+
+                            // Find any esiting material name and match it
+                            string ImportedObjMaterialName = ImportedMaterials[ImportedObjects[i].MaterialIndex].Text;
+                            Material ExistingMaterial = Model.Materials.SingleOrDefault(mat => mat.Name == ImportedObjMaterialName);
+
+                            if (ExistingMaterial != null)
+                            {
+                                int ExistingMaterialIndex = Model.Materials.IndexOf(ExistingMaterial);
+                                ImportedObjects[i].MaterialIndex = ExistingMaterialIndex;
+                            }
 
                             if (Matches != null && Matches.Count > 0)
                             {

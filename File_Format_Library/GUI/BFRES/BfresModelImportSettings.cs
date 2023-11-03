@@ -20,7 +20,7 @@ namespace FirstPlugin
 
             CanResize = false;
             ogSkinCountChkBox.Checked = false;
-            chkMapOriginalMaterials.Checked = true;
+            chkMapOriginalMaterials.Checked = false;
 
             lodCountUD.Value = 2;
 
