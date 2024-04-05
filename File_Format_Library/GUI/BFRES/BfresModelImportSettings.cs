@@ -350,7 +350,7 @@ namespace FirstPlugin
             comboBoxFormatNormals.Items.Add(AttribFormat.Format_16_16_16_16_SNorm);
             comboBoxFormatNormals.Items.Add(AttribFormat.Format_10_10_10_2_SNorm);
             comboBoxFormatNormals.Items.Add(AttribFormat.Format_8_8_8_8_SNorm);
-            comboBoxFormatNormals.SelectedIndex = 3;
+            comboBoxFormatNormals.SelectedIndex = 0;
 
             comboBoxFormatIndices.Items.Add(AttribFormat.Format_32_32_32_32_UInt);
             comboBoxFormatIndices.Items.Add(AttribFormat.Format_16_16_16_16_UInt);
@@ -380,14 +380,14 @@ namespace FirstPlugin
             comboBoxFormatTangents.Items.Add(AttribFormat.Format_16_16_16_16_SNorm);
             comboBoxFormatTangents.Items.Add(AttribFormat.Format_10_10_10_2_SNorm);
             comboBoxFormatTangents.Items.Add(AttribFormat.Format_8_8_8_8_SNorm);
-            comboBoxFormatTangents.SelectedIndex = 4;
+            comboBoxFormatTangents.SelectedIndex = 0;
 
             comboBoxFormatBitans.Items.Add(AttribFormat.Format_32_32_32_32_Single);
             comboBoxFormatBitans.Items.Add(AttribFormat.Format_16_16_16_16_Single);
             comboBoxFormatBitans.Items.Add(AttribFormat.Format_16_16_16_16_SNorm);
             comboBoxFormatBitans.Items.Add(AttribFormat.Format_10_10_10_2_SNorm);
             comboBoxFormatBitans.Items.Add(AttribFormat.Format_8_8_8_8_SNorm);
-            comboBoxFormatBitans.SelectedIndex = 4;
+            comboBoxFormatBitans.SelectedIndex = 0;
 
             comboBoxFormatUvs.Items.Add(AttribFormat.Format_32_32_Single);
             comboBoxFormatUvs.Items.Add(AttribFormat.Format_16_16_Single);
@@ -395,18 +395,18 @@ namespace FirstPlugin
             comboBoxFormatUvs.Items.Add(AttribFormat.Format_16_16_UNorm);
             comboBoxFormatUvs.Items.Add(AttribFormat.Format_8_8_SNorm);
             comboBoxFormatUvs.Items.Add(AttribFormat.Format_8_8_UNorm);
-            comboBoxFormatUvs.SelectedIndex = 1;
+            comboBoxFormatUvs.SelectedIndex = 0;
 
             comboBoxFormatVertexColors.Items.Add(AttribFormat.Format_32_32_32_32_Single);
             comboBoxFormatVertexColors.Items.Add(AttribFormat.Format_16_16_16_16_Single);
             comboBoxFormatVertexColors.Items.Add(AttribFormat.Format_16_16_16_16_SNorm);
             comboBoxFormatVertexColors.Items.Add(AttribFormat.Format_8_8_8_8_UNorm);
             comboBoxFormatVertexColors.Items.Add(AttribFormat.Format_8_8_8_8_SNorm);
-            comboBoxFormatVertexColors.SelectedIndex = 1;
+            comboBoxFormatVertexColors.SelectedIndex = 0;
 
             comboBoxFormatFaces.Items.Add(IndexFormat.UInt16);
             comboBoxFormatFaces.Items.Add(IndexFormat.UInt32);
-            comboBoxFormatFaces.SelectedIndex = 0;
+            comboBoxFormatFaces.SelectedIndex = 1;
         }
 
         private void chkBoxEnableAttribute_CheckedChanged(object sender, EventArgs e)
