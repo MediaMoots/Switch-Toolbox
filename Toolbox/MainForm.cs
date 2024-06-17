@@ -1410,6 +1410,30 @@ namespace Toolbox
             }
         }
 
+        private void batchExportTXTGToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BatchExportTXTG();
+        }
+
+        private void BatchExportTXTG()
+        {
+            ObjectEditor ObjectEditor = (ObjectEditor)ActiveMdiChild;
+            FolderSelectDialog sfd = new FolderSelectDialog();
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                foreach (TreeNode node in ObjectEditor.GetNodes())
+                {
+                    STGenericWrapper foundNode = (STGenericWrapper)node;
+                    if (foundNode == null)
+                    {
+                        continue;
+                    }
+
+                    foundNode.Export(Path.Combine(sfd.SelectedPath, foundNode.Text + ".png"));
+                }
+            }
+        }
+
 
         private void batchExportModelsToolStripMenuItem_Click(object sender, EventArgs e)
         {

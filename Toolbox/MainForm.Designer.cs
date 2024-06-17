@@ -49,6 +49,7 @@
             this.batchExportModelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.batchReplaceFTPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.batchRenameBNTXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.batchExportTXTGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.batchReplaceTXTGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.experimentalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -196,6 +197,7 @@
             this.hashCalculatorToolStripMenuItem,
             this.batchExportTexturesAllSupportedFormatsToolStripMenuItem,
             this.batchExportModelsToolStripMenuItem,
+            this.batchExportTXTGToolStripMenuItem,
             this.batchReplaceFTPToolStripMenuItem,
             this.batchReplaceTXTGToolStripMenuItem,
             this.batchRenameBNTXToolStripMenuItem,});
@@ -236,6 +238,13 @@
             this.batchExportModelsToolStripMenuItem.Size = new System.Drawing.Size(316, 22);
             this.batchExportModelsToolStripMenuItem.Text = "Batch Export Models";
             this.batchExportModelsToolStripMenuItem.Click += new System.EventHandler(this.batchExportModelsToolStripMenuItem_Click);
+            // 
+            // batchExportTXTGToolStripMenuItem
+            // 
+            this.batchExportTXTGToolStripMenuItem.Name = "batchExportTXTGToolStripMenuItem";
+            this.batchExportTXTGToolStripMenuItem.Size = new System.Drawing.Size(316, 22);
+            this.batchExportTXTGToolStripMenuItem.Text = "Batch Export TXTG";
+            this.batchExportTXTGToolStripMenuItem.Click += new System.EventHandler(this.batchExportTXTGToolStripMenuItem_Click);
             // 
             // batchReplaceFTPToolStripMenuItem
             // 
@@ -618,6 +627,7 @@
         private System.Windows.Forms.ToolStripMenuItem batchExportTexturesAllSupportedFormatsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem batchExportModelsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem batchReplaceFTPToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem batchExportTXTGToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem batchReplaceTXTGToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem batchRenameBNTXToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem donateToolStripMenuItem;
