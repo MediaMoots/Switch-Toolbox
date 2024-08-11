@@ -1,6 +1,10 @@
 # Switch-Toolbox
 A tool to edit many formats of Nintendo Switch, 3DS and Wii U. 
 
+## Notice
+
+**This tool is now archived and no longer in development!**
+
 # Download
 https://github.com/KillzXGaming/Switch-Toolbox/releases
 
@@ -108,6 +112,8 @@ https://github.com/KillzXGaming/Switch-Toolbox/issues
 To build make sure you have Visual Studio installed (I use 2017, older versions may not work) and open the solution (.sln), then build the solution as release. It should compile properly on the latest.
 
 In the event that the tool cannot compile, check references. All the libraries used are stored in Switch-Toolbox/Lib folder. 
+
+Also, while compiling, Visual Studio might throw errors about files coming from external sources (ie. the web) and will therefore fail to read and compile them. In this event, go into the project root folder and run: `Get-ChildItem -Path "C:\\Full\\Path\\To\\Folder" -Recurse | Unblock-File`.
 
 ## Credits
 
