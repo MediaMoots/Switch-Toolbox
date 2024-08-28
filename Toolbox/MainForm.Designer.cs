@@ -49,6 +49,7 @@
             this.batchExportModelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.batchReplaceFTPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.batchRenameBNTXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.texToGoReplacementMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.batchExportTXTGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.batchReplaceTXTGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.experimentalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -200,7 +201,8 @@
             this.batchExportTXTGToolStripMenuItem,
             this.batchReplaceFTPToolStripMenuItem,
             this.batchReplaceTXTGToolStripMenuItem,
-            this.batchRenameBNTXToolStripMenuItem,});
+            this.batchRenameBNTXToolStripMenuItem,
+            this.texToGoReplacementMapToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 21);
             this.toolsToolStripMenuItem.Text = "Tools";
@@ -266,6 +268,13 @@
             this.batchRenameBNTXToolStripMenuItem.Size = new System.Drawing.Size(316, 22);
             this.batchRenameBNTXToolStripMenuItem.Text = "Batch Rename BNTX from Filename";
             this.batchRenameBNTXToolStripMenuItem.Click += new System.EventHandler(this.batchRenameBNTXToolStripMenuItem_Click);
+            // 
+            // texToGoReplacementMapToolStripMenuItem
+            // 
+            this.texToGoReplacementMapToolStripMenuItem.Name = "texToGoReplacementMapToolStripMenuItem";
+            this.texToGoReplacementMapToolStripMenuItem.Size = new System.Drawing.Size(316, 22);
+            this.texToGoReplacementMapToolStripMenuItem.Text = "TexToGo Replacement Map Tool";
+            this.texToGoReplacementMapToolStripMenuItem.Click += new System.EventHandler(this.texToGoReplacementMapToolStripMenuItem_Click);
             // 
             // experimentalToolStripMenuItem
             // 
@@ -630,6 +639,7 @@
         private System.Windows.Forms.ToolStripMenuItem batchExportTXTGToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem batchReplaceTXTGToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem batchRenameBNTXToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem texToGoReplacementMapToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem donateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openUserFolderToolStripMenuItem;
     }

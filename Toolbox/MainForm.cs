@@ -19,8 +19,9 @@ using Toolbox.Library.NodeWrappers;
 using Toolbox.Library.Rendering;
 using Bfres.Structs;
 using Syroot.NintenTools.NSW.Bntx;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 using FirstPlugin;
+using Newtonsoft.Json;
+using Toolbox.Library.Animations;
 
 namespace Toolbox
 {
@@ -1417,11 +1418,11 @@ namespace Toolbox
 
         private void BatchExportTXTG()
         {
-            ObjectEditor ObjectEditor = (ObjectEditor)ActiveMdiChild;
+            ObjectEditor objectEditor = (ObjectEditor)ActiveMdiChild;
             FolderSelectDialog sfd = new FolderSelectDialog();
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                foreach (TreeNode node in ObjectEditor.GetNodes())
+                foreach (TreeNode node in objectEditor.GetNodes())
                 {
                     STGenericWrapper foundNode = (STGenericWrapper)node;
                     if (foundNode == null)
@@ -1456,11 +1457,11 @@ namespace Toolbox
 
         private void BatchReplaceTXTG()
         {
-            ObjectEditor ObjectEditor = (ObjectEditor)ActiveMdiChild;
+            ObjectEditor objectEditor = (ObjectEditor)ActiveMdiChild;
             FolderSelectDialog sfd = new FolderSelectDialog();
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                foreach (TreeNode node in ObjectEditor.GetNodes())
+                foreach (TreeNode node in objectEditor.GetNodes())
                 {
                     STGenericWrapper foundNode = (STGenericWrapper)node;
                     if (foundNode == null)
@@ -1486,11 +1487,11 @@ namespace Toolbox
 
         private void BatchReplaceFTP()
         {
-            ObjectEditor ObjectEditor = (ObjectEditor)ActiveMdiChild;
+            ObjectEditor objectEditor = (ObjectEditor)ActiveMdiChild;
             FolderSelectDialog sfd = new FolderSelectDialog();
             if (sfd.ShowDialog() == DialogResult.OK)
             {
-                foreach (TreeNode node in ObjectEditor.GetNodes())
+                foreach (TreeNode node in objectEditor.GetNodes())
                 {
                     TreeNode foundNode = FindNodeByText(node, "Texture Pattern Animations");
 
@@ -1539,9 +1540,9 @@ namespace Toolbox
 
         private void batchRenameBNTXToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ObjectEditor ObjectEditor = (ObjectEditor)ActiveMdiChild;
+            ObjectEditor objectEditor = (ObjectEditor)ActiveMdiChild;
 
-            foreach (TreeNode node in ObjectEditor.GetNodes())
+            foreach (TreeNode node in objectEditor.GetNodes())
             {
                 FirstPlugin.BNTX foundNode = (FirstPlugin.BNTX)node;
 
@@ -1571,7 +1572,35 @@ namespace Toolbox
                     foundNode.Textures.Add(fileName, textureData);
                 }
             }
-            ObjectEditor.Update();
+            objectEditor.Update();
+        }
+
+        private void texToGoReplacementMapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "JSON Files (*.json)|*.json";
+
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                Cursor.Current = Cursors.WaitCursor;
+
+                Dictionary<string, string> texToGoReplacementMap = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(ofd.FileName));
+                foreach(var item in texToGoReplacementMap)
+                {
+                    OpenFile(item.Key);
+
+                    ObjectEditor objectEditor = (ObjectEditor)LibraryGUI.GetActiveForm();
+                    TreeNodeCollection nodes = objectEditor.GetNodes();
+                    STGenericWrapper foundNode = (STGenericWrapper)nodes[nodes.Count - 1];
+
+                    foundNode.Replace(item.Value);
+                }
+
+                ObjectEditor objectEditorN = (ObjectEditor)LibraryGUI.GetActiveForm();
+                SaveNodeFormats(objectEditorN, false, false);
+
+                Cursor.Current = Cursors.Default;
+            }
         }
 
         private List<string> failedFiles = new List<string>();
