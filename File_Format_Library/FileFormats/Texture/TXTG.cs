@@ -22,6 +22,7 @@ namespace FirstPlugin
     {
         public FileType FileType { get; set; } = FileType.Image;
 
+        public bool LoadOnly { get; set; } = false;
         public bool CanSave { get; set; } = true;
         public string[] Description { get; set; } = new string[] { "Texture To Go" };
         public string[] Extension { get; set; } = new string[] { "*.txtg" };
@@ -165,11 +166,14 @@ namespace FirstPlugin
             string name = Path.GetFileNameWithoutExtension(FileName);
             Text = name;
 
-            //cache for loading file 
-            if (PluginRuntime.TextureCache.ContainsKey(name))
-                PluginRuntime.TextureCache.Remove(name);
+            if (!LoadOnly)
+            { 
+                //cache for loading file 
+                if (PluginRuntime.TextureCache.ContainsKey(name))
+                    PluginRuntime.TextureCache.Remove(name);
 
-            PluginRuntime.TextureCache.Add(name, this);
+                PluginRuntime.TextureCache.Add(name, this);
+            }
 
             using (var reader = new FileReader(stream, true))
             {
@@ -321,13 +325,17 @@ namespace FirstPlugin
         {
             //Replace the data using an instance of a switch texture
             var tex = new TextureData();
+            tex.LoadOnly = LoadOnly;
             tex.Replace(FileName, MipCount, 0, Format, Syroot.NintenTools.NSW.Bntx.GFX.SurfaceDim.Dim2D, 1);
 
-            //Get swappable array level
-            ImageEditorBase editor = (ImageEditorBase)LibraryGUI.GetActiveContent(typeof(ImageEditorBase));
             int targetArray = 0;
-            if (editor != null)
-                targetArray = editor.GetArrayDisplayLevel();
+            if (!LoadOnly)
+            {
+                //Get swappable array level
+                ImageEditorBase editor = (ImageEditorBase)LibraryGUI.GetActiveContent(typeof(ImageEditorBase));
+                if (editor != null)
+                    targetArray = editor.GetArrayDisplayLevel();
+            }
 
             SetImage(tex, targetArray);
         }
@@ -369,9 +377,10 @@ namespace FirstPlugin
 
             IsEdited = true;
 
-            UpdateEditor();
-
-            this.LoadOpenGLTexture();
+            if (!LoadOnly)
+            {
+                UpdateEditor();
+            }
         }
 
         class SurfaceInfo

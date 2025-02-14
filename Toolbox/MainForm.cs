@@ -23,6 +23,7 @@ using FirstPlugin;
 using Newtonsoft.Json;
 using Toolbox.Library.Animations;
 using DKCTF;
+using System.Threading.Tasks;
 
 namespace Toolbox
 {
@@ -1590,7 +1591,7 @@ namespace Toolbox
             objectEditor.Update();
         }
 
-        private void texToGoReplacementMapToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void texToGoReplacementMapToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "JSON Files (*.json)|*.json";
@@ -1599,26 +1600,41 @@ namespace Toolbox
             {
                 Cursor.Current = Cursors.WaitCursor;
 
-                Dictionary<string, string> texToGoReplacementMap = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(ofd.FileName));
-                foreach (var item in texToGoReplacementMap)
-                {
-                    Stream stream = File.OpenRead(item.Key);
-                    TXTG txtg = new();
-                    txtg.FileName = Path.GetFileName(item.Key);
-                    txtg.Load(stream);
-                    stream.Close();
+                // Read and deserialize the JSON mapping.
+                string jsonText = File.ReadAllText(ofd.FileName);
+                Dictionary<string, string> texToGoReplacementMap = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonText);
 
+                Runtime.UseOpenGL = false;
+
+                // Create a Task for each file processing operation.
+                var tasks = texToGoReplacementMap.Select(item => Task.Run(() =>
+                {
+                    TXTG txtg = new TXTG();
+
+                    // Open the file stream and load the TXTG.
+                    using (Stream stream = File.OpenRead(item.Key))
+                    {
+                        txtg.FileName = Path.GetFileName(item.Key);
+                        txtg.LoadOnly = true;
+                        txtg.Load(stream);
+                    } // The stream is disposed here.
+
+                    // Reload the file if needed or assume txtg has been appropriately updated.
+                    // Here we assume txtg remains in scope; if not, combine into one using block.
                     txtg.Replace(item.Value);
 
-                    //Save a temporary file first to not disturb the opened file
+                    // Save to the file.
                     using (var fileStream = new FileStream(item.Key, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite))
                     {
                         txtg.Save(fileStream);
                     }
-                }
+                })).ToArray();
 
-                MessageBox.Show($"TexToGo Replacement Map Tool Completed!", "Notification");
+                // Await the completion of all tasks.
+                await Task.WhenAll(tasks);
 
+                Runtime.UseOpenGL = true;
+                MessageBox.Show("TexToGo Replacement Map Tool Completed!", "Notification");
                 Cursor.Current = Cursors.Default;
             }
         }

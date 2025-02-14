@@ -1241,6 +1241,7 @@ namespace FirstPlugin
         }
 
         public override bool CanEdit { get; set; } = true;
+        public bool LoadOnly { get; set; } = false;
 
         public Texture Texture;
 
@@ -1616,7 +1617,10 @@ namespace FirstPlugin
         }
         public void ApplyImportSettings(TextureImporterSettings setting,STCompressionMode CompressionMode, bool multiThread, bool force_srgb = false)
         {
-            Cursor.Current = Cursors.WaitCursor;
+            if (!LoadOnly)
+            {
+                Cursor.Current = Cursors.WaitCursor;
+            }
 
             if (setting.GenerateMipmaps && !setting.IsFinishedCompressing)
             {
@@ -1639,9 +1643,12 @@ namespace FirstPlugin
 
             LoadOpenGLTexture();
 
-            UpdateTextureMapping();
+            if (!LoadOnly)
+            {
+                UpdateTextureMapping();
+            }
 
-            if (IsEditorActive())
+            if (!LoadOnly && IsEditorActive())
                 UpdateEditor();
         }
 
