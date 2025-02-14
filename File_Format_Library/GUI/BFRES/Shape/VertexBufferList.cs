@@ -87,7 +87,9 @@ namespace FirstPlugin.Forms
         private string GetAttributeHint(string Name)
         {
             //The value used for multiple instances for the attribute
-            var index = string.Concat(Name.ToArray().Reverse().TakeWhile(char.IsNumber).Reverse());
+            char[] tempArray = Name.ToArray();
+            tempArray.Reverse();
+            var index = string.Concat(tempArray.TakeWhile(char.IsNumber).Reverse());
 
             if (Name == $"_p{index}")
                 return $"Position {index}";

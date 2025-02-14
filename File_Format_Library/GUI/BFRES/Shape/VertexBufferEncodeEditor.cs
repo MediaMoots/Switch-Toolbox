@@ -37,7 +37,9 @@ namespace FirstPlugin.Forms
 
         private void SetFormat(FSHP.VertexAttribute attribute)
         {
-            var index = string.Concat(attribute.Name.ToArray().Reverse().TakeWhile(char.IsNumber).Reverse());
+            char[] tempArray = attribute.Name.ToArray();
+            tempArray.Reverse();
+            var index = string.Concat(tempArray.TakeWhile(char.IsNumber).Reverse());
 
             if (attribute.Name == $"_p{index}")
             {

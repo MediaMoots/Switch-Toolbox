@@ -521,7 +521,9 @@ namespace Bfres.Structs
 
             foreach (var attribute in vertexAttributes)
             {
-                var index = string.Concat(attribute.Name.ToArray().Reverse().TakeWhile(char.IsNumber).Reverse());
+                char[] tempArray = attribute.Name.ToArray();
+                tempArray.Reverse();
+                var index = string.Concat(tempArray.TakeWhile(char.IsNumber).Reverse());
 
                 if (attribute.Name == $"_u{index}")
                     uvMaps.Add(attribute);
@@ -1574,7 +1576,9 @@ namespace Bfres.Structs
 
             public AttributeType GetAttributeType()
             {
-                var index = string.Concat(Name.ToArray().Reverse().TakeWhile(char.IsNumber).Reverse());
+                char[] tempArray = Name.ToArray();
+                tempArray.Reverse();
+                var index = string.Concat(tempArray.TakeWhile(char.IsNumber).Reverse());
 
                 if (Name == $"_p{index}")
                     return AttributeType.Position;
