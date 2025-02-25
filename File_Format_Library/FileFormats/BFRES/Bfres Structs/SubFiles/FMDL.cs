@@ -893,14 +893,29 @@ namespace Bfres.Structs
                             ImportedObjects[i].ObjectName, StringComparison.CurrentCulture)).ToList();
                             ImportedObjects[i].BoneIndex = 0;
 
-                            // Find any esiting material name and match it
-                            string ImportedObjMaterialName = ImportedMaterials[ImportedObjects[i].MaterialIndex].Text;
-                            Material ExistingMaterial = Model.Materials.SingleOrDefault(mat => mat.Name == ImportedObjMaterialName);
-
-                            if (ExistingMaterial != null)
+                            if (!IsWiiU)
                             {
-                                int ExistingMaterialIndex = Model.Materials.IndexOf(ExistingMaterial);
-                                ImportedObjects[i].MaterialIndex = ExistingMaterialIndex;
+                                // Find any esiting material name and match it
+                                string ImportedObjMaterialName = ImportedMaterials[ImportedObjects[i].MaterialIndex].Text;
+                                Material ExistingMaterial = Model.Materials.SingleOrDefault(mat => mat.Name == ImportedObjMaterialName);
+
+                                if (ExistingMaterial != null)
+                                {
+                                    int ExistingMaterialIndex = Model.Materials.IndexOf(ExistingMaterial);
+                                    ImportedObjects[i].MaterialIndex = ExistingMaterialIndex;
+                                }
+                            }
+                            else
+                            {
+                                // Find any esiting material name and match it
+                                string ImportedObjMaterialName = ImportedMaterials[ImportedObjects[i].MaterialIndex].Text;
+                                Syroot.NintenTools.Bfres.Material ExistingMaterial = ModelU.Materials.Values.SingleOrDefault(mat => mat.Name == ImportedObjMaterialName);
+
+                                if (ExistingMaterial != null)
+                                {
+                                    int ExistingMaterialIndex = ModelU.Materials.IndexOf(ExistingMaterial);
+                                    ImportedObjects[i].MaterialIndex = ExistingMaterialIndex;
+                                }
                             }
 
                             if (Matches != null && Matches.Count > 0)
