@@ -90,6 +90,7 @@ namespace Toolbox
             chkFrameCamera.Checked = Runtime.FrameCamera;
             chkAlwaysSaveAll.Checked = Runtime.AlwaysSaveAll;
             chkAlwaysCompressOnSave.Checked = Runtime.AlwaysCompressOnSave;
+            chkAutoConfirmTextureImport.Checked = Runtime.AutoConfirmTextureImport;
             chkViewportGrid.Checked = Runtime.displayGrid;
             chkViewportAxisLines.Checked = Runtime.displayAxisLines;
 
@@ -672,6 +673,11 @@ namespace Toolbox
 
         private void chkAlwaysCompressOnSave_CheckedChanged(object sender, EventArgs e) {
            Runtime.AlwaysCompressOnSave = chkAlwaysCompressOnSave.Checked;
+        }
+
+        private void chkAutoConfirmTextureImport_CheckedChanged(object sender, EventArgs e)
+        {
+            Runtime.AutoConfirmTextureImport = chkAutoConfirmTextureImport.Checked;
         }
 
         private void pathPokemonSwShTB_TextChanged(object sender, EventArgs e)

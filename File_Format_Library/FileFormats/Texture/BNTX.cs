@@ -999,6 +999,84 @@ namespace FirstPlugin
             }
         }
 
+        /// <summary>
+        /// Batch-replaces textures in all provided BNTX containers from a folder of PNG/image files.
+        /// When Runtime.AutoConfirmTextureImport is true the import dialog is bypassed automatically.
+        /// </summary>
+        public static void BatchReplaceAllContainers(BNTX[] bntxFiles, string folderPath)
+        {
+            BinaryTextureImporterList importer = new BinaryTextureImporterList();
+            List<TextureImporterSettings> settings = new List<TextureImporterSettings>();
+            List<TextureData> TexturesForImportSettings = new List<TextureData>();
+
+            foreach (string file in System.IO.Directory.GetFiles(folderPath))
+            {
+                string FileName = System.IO.Path.GetFileNameWithoutExtension(file);
+                string ext = Utils.GetExtension(file);
+
+                foreach (var bntx in bntxFiles)
+                {
+                    foreach (TextureData node in bntx.Textures.Values)
+                    {
+                        if (FileName != node.Text)
+                            continue;
+
+                        var DefaultFormat = node.Format;
+                        TextureImporterSettings setting = new TextureImporterSettings();
+
+                        switch (ext)
+                        {
+                            case ".bftex":
+                                node.Texture.Import(file);
+                                node.LoadOpenGLTexture();
+                                break;
+                            case ".dds":
+                            case ".dds2":
+                                setting.LoadDDS(file, null, node);
+                                node.ApplyImportSettings(setting, STCompressionMode.Normal, false);
+                                break;
+                            case ".astc":
+                                setting.LoadASTC(file);
+                                node.ApplyImportSettings(setting, STCompressionMode.Normal, false);
+                                break;
+                            case ".png":
+                            case ".tga":
+                            case ".tiff":
+                            case ".gif":
+                            case ".jpg":
+                            case ".jpeg":
+                                setting.LoadBitMap(file);
+                                importer.LoadSetting(setting);
+                                if (!STGenericTexture.IsAtscFormat(DefaultFormat))
+                                    setting.Format = TextureData.GenericToBntxSurfaceFormat(DefaultFormat);
+                                TexturesForImportSettings.Add(node);
+                                settings.Add(setting);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
+
+            if (settings.Count == 0)
+            {
+                importer.Close();
+                importer.Dispose();
+                return;
+            }
+
+            // ShowDialog() respects Runtime.AutoConfirmTextureImport and returns OK without UI when enabled
+            if (importer.ShowDialog() == DialogResult.OK)
+            {
+                int settingsIndex = 0;
+                foreach (TextureData node in TexturesForImportSettings)
+                    node.ApplyImportSettings(settings[settingsIndex++], importer.CompressionMode, importer.MultiThreading);
+            }
+
+            TexturesForImportSettings.Clear();
+        }
+
         private void ExportAll(object sender, EventArgs args)
         {
             List<string> Formats = new List<string>();

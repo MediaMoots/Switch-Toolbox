@@ -84,6 +84,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.chkAlwaysSaveAll = new Toolbox.Library.Forms.STCheckBox();
             this.chkAlwaysCompressOnSave = new Toolbox.Library.Forms.STCheckBox();
+            this.chkAutoConfirmTextureImport = new Toolbox.Library.Forms.STCheckBox();
             this.chkFrameCamera = new Toolbox.Library.Forms.STCheckBox();
             this.modelLoadArchive = new Toolbox.Library.Forms.STCheckBox();
             this.gridCellCountUD = new Toolbox.Library.Forms.NumericUpDownUint();
@@ -921,6 +922,7 @@
             // 
             this.tabPage2.Controls.Add(this.chkAlwaysSaveAll);
             this.tabPage2.Controls.Add(this.chkAlwaysCompressOnSave);
+            this.tabPage2.Controls.Add(this.chkAutoConfirmTextureImport);
             this.tabPage2.Controls.Add(this.chkFrameCamera);
             this.tabPage2.Controls.Add(this.modelLoadArchive);
             this.tabPage2.Controls.Add(this.gridCellCountUD);
@@ -970,10 +972,23 @@
             this.chkAlwaysCompressOnSave.UseVisualStyleBackColor = true;
             this.chkAlwaysCompressOnSave.CheckedChanged += new System.EventHandler(this.chkAlwaysCompressOnSave_CheckedChanged);
             // 
+            // chkAutoConfirmTextureImport
+            // 
+            this.chkAutoConfirmTextureImport.AutoSize = true;
+            this.chkAutoConfirmTextureImport.Location = new System.Drawing.Point(12, 309);
+            this.chkAutoConfirmTextureImport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkAutoConfirmTextureImport.Name = "chkAutoConfirmTextureImport";
+            this.chkAutoConfirmTextureImport.Size = new System.Drawing.Size(280, 20);
+            this.chkAutoConfirmTextureImport.TabIndex = 21;
+            this.chkAutoConfirmTextureImport.Text = "Auto confirm texture import dialogs";
+            this.chkAutoConfirmTextureImport.TextAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.chkAutoConfirmTextureImport.UseVisualStyleBackColor = true;
+            this.chkAutoConfirmTextureImport.CheckedChanged += new System.EventHandler(this.chkAutoConfirmTextureImport_CheckedChanged);
+            // 
             // chkFrameCamera
             // 
             this.chkFrameCamera.AutoSize = true;
-            this.chkFrameCamera.Location = new System.Drawing.Point(12, 309);
+            this.chkFrameCamera.Location = new System.Drawing.Point(12, 334);
             this.chkFrameCamera.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkFrameCamera.Name = "chkFrameCamera";
             this.chkFrameCamera.Size = new System.Drawing.Size(261, 20);
@@ -986,7 +1001,7 @@
             // modelLoadArchive
             // 
             this.modelLoadArchive.AutoSize = true;
-            this.modelLoadArchive.Location = new System.Drawing.Point(12, 334);
+            this.modelLoadArchive.Location = new System.Drawing.Point(12, 359);
             this.modelLoadArchive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.modelLoadArchive.Name = "modelLoadArchive";
             this.modelLoadArchive.Size = new System.Drawing.Size(254, 20);
@@ -1593,6 +1608,7 @@
         private Toolbox.Library.Forms.STCheckBox chkFrameCamera;
         private Toolbox.Library.Forms.STCheckBox chkAlwaysSaveAll;
         private Toolbox.Library.Forms.STCheckBox chkAlwaysCompressOnSave;
+        private Toolbox.Library.Forms.STCheckBox chkAutoConfirmTextureImport;
         private Library.Forms.STLabel stLabel18;
         private Library.Forms.STTextBox pathPokemonSwShTB;
         private Library.Forms.STButton btnReset;

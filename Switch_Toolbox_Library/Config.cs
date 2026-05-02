@@ -107,6 +107,8 @@ namespace Toolbox.Library
                         break;
                     case "MaximizeMdiWindow": bool.TryParse(node.InnerText, out Runtime.MaximizeMdiWindow);
                         break;
+                    case "AutoConfirmTextureImport": bool.TryParse(node.InnerText, out Runtime.AutoConfirmTextureImport);
+                        break;
                     case "PreferredTexFormat":
                         TEX_FORMAT texFormat;
                         Enum.TryParse(node.InnerText, out texFormat);
@@ -496,6 +498,7 @@ namespace Toolbox.Library
             mainSettingsNode.AppendChild(createNode(doc, "FormTheme", Toolbox.Library.Forms.FormThemes.ActivePreset.ToString()));
             mainSettingsNode.AppendChild(createNode(doc, "MaximizeMdiWindow", Runtime.MaximizeMdiWindow.ToString()));
             mainSettingsNode.AppendChild(createNode(doc, "ShowCloseDialog", Runtime.ShowCloseDialog.ToString()));
+            mainSettingsNode.AppendChild(createNode(doc, "AutoConfirmTextureImport", Runtime.AutoConfirmTextureImport.ToString()));
         }
         private static void AppendImageEditorSettings(XmlDocument doc, XmlNode parentNode)
         {

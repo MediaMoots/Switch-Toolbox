@@ -38,6 +38,13 @@ namespace FirstPlugin
 
         private bool IsLoaded = false;
 
+        public new DialogResult ShowDialog()
+        {
+            if (Runtime.AutoConfirmTextureImport)
+                return DialogResult.OK;
+            return base.ShowDialog();
+        }
+
         public BinaryTextureImporterList()
         {
             InitializeComponent();

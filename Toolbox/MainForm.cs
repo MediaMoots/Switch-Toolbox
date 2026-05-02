@@ -1471,6 +1471,26 @@ namespace Toolbox
             BatchReplaceTXTG();
         }
 
+        private void batchReplaceBNTXToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BatchReplaceBNTX();
+        }
+
+        private void BatchReplaceBNTX()
+        {
+            FolderSelectDialog sfd = new FolderSelectDialog();
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                var containers = PluginRuntime.bntxContainers.ToArray();
+                if (containers.Length == 0)
+                {
+                    MessageBox.Show("No BNTX containers are currently loaded.", "Batch Replace BNTX");
+                    return;
+                }
+                BNTX.BatchReplaceAllContainers(containers, sfd.SelectedPath);
+            }
+        }
+
         private void BatchReplaceTXTG()
         {
             ObjectEditor objectEditor = (ObjectEditor)ActiveMdiChild;
