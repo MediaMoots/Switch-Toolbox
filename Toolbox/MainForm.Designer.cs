@@ -48,7 +48,9 @@
             this.batchExportTexturesAllSupportedFormatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.batchExportModelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.batchReplaceFTPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.batchRenameBNTXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();            this.batchReplaceBNTXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();            this.texToGoReplacementMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.batchRenameBNTXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();            
+            this.batchReplaceBNTXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();            
+            this.texToGoReplacementMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.batchExportTXTGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.batchReplaceTXTGToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.experimentalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
